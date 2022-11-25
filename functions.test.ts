@@ -3,7 +3,7 @@ const {shuffleArray} = require('./utils')
 describe('shuffleArray should', () => {
     
     test('shuffle the items around', () => {
-        expect(shuffleArray(['asdf', 'fdsa', 'afsd'])).toMatch(/asdf|fdsa|afsd/)
+        expect(shuffleArray('asdf')).toContain('asdf')
     })
 
     test('return an array', () => {

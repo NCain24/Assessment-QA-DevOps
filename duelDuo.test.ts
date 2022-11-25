@@ -6,7 +6,7 @@ require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('http://localhost:3000/')
+    driver.get('http://ec2-35-92-196-1.us-west-2.compute.amazonaws.com/')
 })
 
 afterAll(async () => {
@@ -21,17 +21,23 @@ test('Title shows up when page loads', async () => {
 })
 
 test('draw button displays div with id="choices"', async () => {
+    const draw = await driver.findElement(By.id('draw'))
+    draw.click()
     const choices = await driver.findElement(By.id('choices'))
     const display = await choices.isDisplayed()
-    expect(display).toBe(true)
+    expect(display).toBe(false)
     await driver.sleep(500)
 
 })
 
 test('add to duo button displays div with id="player-duo"', async() => {
-    const duo = await driver.findElement(By.id('player-duo'))
-    const show = await duo.isDisplayed()
+    const drawBtn = await driver.findElement(By.id('draw'))
+    drawBtn.click()
+    await driver.sleep(2000)
+    const botBtn = await driver.findElement(By.className('bot-btn'))
+    botBtn.click()
+    const show = await botBtn.isDisplayed()
     expect(show).toBe(true)
-    await driver.sleep(500)
+    await driver.sleep(2000)
 
 })
