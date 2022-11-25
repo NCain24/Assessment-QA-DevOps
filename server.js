@@ -7,7 +7,7 @@ app.use(express.json())
 
 app.use(express.static(`${__dirname}/public`))
 
-app.get('/api/robots', (req, res) => {
+app.get('api/robots', (req, res) => {
     try {
         res.status(200).send(botsArr)
     } catch (error) {
@@ -16,7 +16,7 @@ app.get('/api/robots', (req, res) => {
     }
 })
 
-app.get('/api/robots/five', (req, res) => {
+app.get('api/robots/five', (req, res) => {
     try {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
@@ -28,7 +28,7 @@ app.get('/api/robots/five', (req, res) => {
     }
 })
 
-app.post('/api/duel', (req, res) => {
+app.post('api/duel', (req, res) => {
     try {
         // getting the duos from the front end
         let {compDuo, playerDuo} = req.body
@@ -59,7 +59,7 @@ app.post('/api/duel', (req, res) => {
     }
 })
 
-app.get('/api/player', (req, res) => {
+app.get('api/player', (req, res) => {
     try {
         res.status(200).send(playerRecord)
     } catch (error) {
